@@ -1,24 +1,51 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/imperiatec_logo.jpeg';
 import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const onClic = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
-    console.log('try to connect with:', { email, password });
+
+    const payload = { email, password };
+
+    try {
+      const response = await fetch('http://localhost:8000/api/accounts/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('access_token', data.access_token);
+        localStorage.setItem('refresh_token', data.refresh_token);
+        navigate('/home');
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || 'error connecting');
+      }
+    } catch (err) {
+      console.error('connection failed', err);
+      setError('connection failed.');
+    }
   };
 
   return (
     <div className="login-container">
       <a className="login-logo" href="/home">
-      <img src={logo} alt="Logo" />
+        <img src={logo} alt="Logo" />
       </a>
       <h2>Log in</h2>
-      <form className="login-form" onClic={onClic}>
+      {error && <p className="error">{error}</p>}
+      <form className="login-form" onSubmit={onSubmit}>
         <div className="input-group">
           <input
             type="email"
@@ -50,4 +77,4 @@ const Login = () => {
   );
 };
 
-export default Login;   
+export default Login;
