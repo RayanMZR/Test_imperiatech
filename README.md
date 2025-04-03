@@ -46,3 +46,7 @@
    Ceci ouvrira l'application dans votre navigateur à l'adresse `http://localhost:3000/`.
 
 Une fois le front-end **et** le back-end lancés, vous pouvez accéder à ImperiatecDoc via votre navigateur web et utiliser l'application.
+
+## Bonus réalisés
+
+- Implémentation d'une fonctionnalité de drag & drop pour le téléversement des fichiers PDF.
