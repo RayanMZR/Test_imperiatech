@@ -70,6 +70,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
+X_FRAME_OPTIONS = 'ALLOWALL'
+
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [

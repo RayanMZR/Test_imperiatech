@@ -9,7 +9,7 @@ const UploadFile = ({ onUploadSuccess }) => {
   };
 
   const onSubmit = async (event) => {
-    file.preventDefault();
+    event.preventDefault();
     if (!file) {
       setError("Please select a file");
       return;
