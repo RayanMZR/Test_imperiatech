@@ -6,14 +6,9 @@ const PdfViewer = ({ pdfUrl, onClose }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         <button className="close-button" onClick={onClose}>
-          &times;
         </button>
         <iframe
           src={pdfUrl}
-          title="PDF Viewer"
-          width="100%"
-          height="600px"
-          style={{ border: 'none' }}
         ></iframe>
       </div>
     </div>
