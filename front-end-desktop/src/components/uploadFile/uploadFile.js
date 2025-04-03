@@ -30,6 +30,7 @@ const UploadFile = ({ onUploadSuccess }) => {
       });
       if (response.ok) {
         onUploadSuccess();
+        window.location.reload();
       } else {
         setError("Error while uploading");
       }
