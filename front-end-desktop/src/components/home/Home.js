@@ -20,11 +20,18 @@ const Home = () => {
     setRefresh((prev) => !prev);
   };
 
+  const logout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    navigate('/login');
+  };
+
   return (
     <div className="home-container">
       <header className="home-header">
-        <div className="header-inner">
+        <div className="header">
           <h1>Welcome</h1>
+          <button className="logout-button" onClick={logout}>Logout</button>
         </div>
       </header>
       <main className="home-main">
