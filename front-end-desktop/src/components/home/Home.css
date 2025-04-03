@@ -13,13 +13,16 @@
     padding: 20px 0;
   }
   
-  .header-inner {
-    text-align: center;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .home-header h1 {
     font-size: 48px;
     margin: 0;
+    margin-left: 41.5%;
     color: #333;
     font-weight: 900;
   }
@@ -45,4 +48,20 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
+
+  .logout-button {
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 2%;
+    border: none;
+    border-radius: 8px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
   
+  .logout-button:hover {
+    background-color: #333; 
+  }
