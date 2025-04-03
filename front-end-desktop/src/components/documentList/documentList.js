@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PdfViewer from '../pdfViewer/PdfViewer';
+import './documentList.css';
 
 const DocumentList = ({ refresh }) => {
   const [document, setDocuments] = useState([]);
@@ -65,30 +66,29 @@ const DocumentList = ({ refresh }) => {
       {document.length === 0 ? (
         <p>No documents available</p>
       ) : (
-        <table>
+        <table className="document-table">
           <thead>
             <tr>
-              <th>File name</th>
-              <th>Upload date</th>
+              <th>File Name</th>
+              <th>Upload Date</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {document.map((doc) => (
+            {document.map(doc => (
               <tr key={doc.id}>
                 <td>{doc.name}</td>
                 <td>{new Date(doc.upload_date).toLocaleString()}</td>
                 <td>
-                  <button onClick={() => handleSee(doc)}>View</button>
-                  <button onClick={() => handleDelete(doc.id)}>Delete</button>
+                  <button className="view-button" onClick={() => handleSee(doc)}>View</button>
+                  <button className="delete-button" onClick={() => handleDelete(doc.id)}>Delete</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
-      {pdfUrl && (
-        <PdfViewer pdfUrl={pdfUrl} onClose={handleClose} />
+      {pdfUrl && (<PdfViewer pdfUrl={pdfUrl} onClose={handleClose} />
       )}
     </div>
   );
