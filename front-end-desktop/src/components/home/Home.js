@@ -23,11 +23,17 @@ const Home = () => {
   return (
     <div className="home-container">
       <header className="home-header">
-        <h1>Welcolm</h1>
+        <div className="header-inner">
+          <h1>Welcome</h1>
+        </div>
       </header>
       <main className="home-main">
-        <UploadFile onUploadSuccess={successUpload} />
-        <DocumentList refresh={refresh} />
+        <section className="upload-section">
+          <UploadFile onUploadSuccess={successUpload} />
+        </section>
+        <section className="documents-section">
+          <DocumentList refresh={refresh} />
+        </section>
       </main>
     </div>
   );
