@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import PdfViewer from '../pdfViewer/PdfViewer';
 
 const DocumentList = ({ refresh }) => {
   const [document, setDocuments] = useState([]);
   const [error, setError] = useState('');
+  const [pdfUrl, setPdfUrl] = useState(null);
 
   const displayDocuments = async () => {
     const token = localStorage.getItem('access_token');
@@ -47,6 +49,15 @@ const DocumentList = ({ refresh }) => {
     }
   };
 
+  const handleSee = (doc) => {
+    console.log(doc.file);
+    setPdfUrl(doc.file);
+  }
+
+  const handleClose = () => {
+    setPdfUrl(null);
+  }
+
   return (
     <div className="document-list-container">
       <h2>My Documents</h2>
@@ -68,13 +79,16 @@ const DocumentList = ({ refresh }) => {
                 <td>{doc.name}</td>
                 <td>{new Date(doc.upload_date).toLocaleString()}</td>
                 <td>
-                  <button onClick={() => window.open(doc.file_url, '_blank')}>See</button>
+                  <button onClick={() => handleSee(doc)}>View</button>
                   <button onClick={() => handleDelete(doc.id)}>Delete</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      )}
+      {pdfUrl && (
+        <PdfViewer pdfUrl={pdfUrl} onClose={handleClose} />
       )}
     </div>
   );
